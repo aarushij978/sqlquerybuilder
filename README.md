@@ -74,13 +74,13 @@ http://localhost:8501
 ## Demo Screenshots
 
 1. Main Page
-<img src="demo_screenshots/SQL_Query_Builder_Page.png" alt="Main Page" width="600"/>
+<img src="demo_screenshots/SQL_Query_Builder_Page.png" alt="Main Page" width="700"/>
 
 2. Show all customers
-<img src="demo_screenshots/all_customers.png" alt="All Customers" width="600"/>
+<img src="demo_screenshots/all_customers.png" alt="All Customers" width="700"/>
 
 3. Customers with more than 3 orders
-<img src="demo_screenshots/customers_gt_3_orders.png" alt="Customers > 3 Orders" width="600"/>
+<img src="demo_screenshots/customers_gt_3_orders.png" alt="Customers > 3 Orders" width="700"/>
 
 ## Notes
 
