@@ -73,13 +73,14 @@ http://localhost:8501
 
 ## Demo Screenshots
 
-Place your screenshots in the demo_screenshots/ folder and update the filenames if needed.
+1. Main Page
+<img src="demo_screenshots/SQL_Query_Builder_Page.png" alt="Main Page" width="600"/>
 
-1. Show all customers
-![All Customers](demo_screenshots/all_customers.png)
+2. Show all customers
+<img src="demo_screenshots/all_customers.png" alt="All Customers" width="600"/>
 
-2. Customers with more than 3 orders
-![Customers > 3 Orders](demo_screenshots/customers_gt_3_orders.png)
+3. Customers with more than 3 orders
+<img src="demo_screenshots/customers_gt_3_orders.png" alt="Customers > 3 Orders" width="600"/>
 
 ## Notes
 
