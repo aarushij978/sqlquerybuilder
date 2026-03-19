@@ -2,6 +2,15 @@ import streamlit as st
 import requests
 import sqlite3
 import pandas as pd
+import os
+from dotenv import load_dotenv
+
+# Load API key from .env
+load_dotenv()
+API_KEY = os.getenv("MISTRAL_API_KEY")
+
+if not API_KEY:
+    st.error("Mistral API key not set. Please create a .env file with MISTRAL_API_KEY.")
 
 # Create/connect to local database
 conn = sqlite3.connect("sample.db", check_same_thread=False)
@@ -27,12 +36,6 @@ if count == 0:
     conn.execute("INSERT INTO customers (name, orders, last_order_date) VALUES ('Sneha', 7, '2025-01-20')")
     conn.commit()
 
-
-
-# API configuration
-API_KEY = "CS2iq3kE5NTmtA97BjhkmprNEya6EuQH"
-API_ENDPOINT = "https://api.mistral.ai/v1/chat/completions"
-
 # Static instruction prompt for SQL query generation
 static_context = """
 You are an expert SQL assistant.
@@ -54,7 +57,7 @@ def call_mistral_api(prompt):
         "messages": [{"role": "user", "content": prompt}]
     }
     try:
-        response = requests.post(API_ENDPOINT, headers=headers, json=data)
+        response = requests.post("https://api.mistral.ai/v1/chat/completions", headers=headers, json=data)
         response.raise_for_status()
         result = response.json()
         return result.get("choices", [])[0].get("message", {}).get("content", "")
@@ -91,7 +94,7 @@ def main():
         st.markdown("### Generated SQL Query")
         st.code(sql_result, language='sql')
 
-        # ✅ Execute SQL query safely (FIXED INDENTATION)
+        # Execute SQL query safely
         try:
             if any(word in sql_result.lower() for word in ["delete", "drop", "update", "insert"]):
                 st.error("Only SELECT queries are allowed.")
@@ -105,7 +108,6 @@ def main():
                     df.to_csv(index=False),
                     "results.csv"
                 )
-
         except Exception as e:
             st.error(f"Error executing query: {e}")
 

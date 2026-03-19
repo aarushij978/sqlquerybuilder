@@ -1,0 +1,13 @@
+# Python / VS Code
+venv/
+__pycache__/
+*.pyc
+.DS_Store
+
+# SQLite database (optional, will auto-generate)
+sample.db
+
+# API keys
+.env
+
+# Demo screenshots folder is included
