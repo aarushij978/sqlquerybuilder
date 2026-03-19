@@ -76,8 +76,10 @@ http://localhost:8501
 Place your screenshots in the demo_screenshots/ folder and update the filenames if needed.
 
 1. Show all customers
+![All Customers](demo_screenshots/all_customers.png)
 
 2. Customers with more than 3 orders
+![Customers > 3 Orders](demo_screenshots/customers_gt_3_orders.png)
 
 ## Notes
 
@@ -96,6 +98,8 @@ Place your screenshots in the demo_screenshots/ folder and update the filenames 
 
 
 ## Folder Structure (Recommended)
+
+```bash
 sqlquerybuilder/
 ├─ sqlbuilder.py             # Main Streamlit app
 ├─ requirements.txt          # Dependencies
@@ -107,3 +111,4 @@ sqlquerybuilder/
 ├─ sample.db (optional)      # Auto-generated SQLite DB
 ├─ .env (not committed)      # API key (optional)
 └─ .gitignore                # Ignore venv, __pycache__, .env, etc.
+```
