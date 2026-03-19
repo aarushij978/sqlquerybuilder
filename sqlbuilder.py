@@ -74,6 +74,7 @@ def main():
 
     st.markdown("---")
     st.header("Enter your query description in English")
+
     query_description = st.text_area(
         "Describe what you want to do with the database:",
         placeholder="e.g., Get the names of all customers who placed more than 3 orders last month."
@@ -86,22 +87,27 @@ def main():
 
         prompt = f"{static_context}\n\nNatural Language Input:\n{query_description}"
         sql_result = call_mistral_api(prompt)
+
         st.markdown("### Generated SQL Query")
         st.code(sql_result, language='sql')
-        # Execute SQL query safely
-try:
-    if any(word in sql_result.lower() for word in ["delete", "drop", "update", "insert"]):
-        st.error("Only SELECT queries are allowed.")
-    else:
-        df = pd.read_sql_query(sql_result, conn)
-        st.markdown("### Query Results")
-        st.dataframe(df)
 
-        # Optional download button
-        st.download_button("Download Results as CSV", df.to_csv(index=False), "results.csv")
+        # ✅ Execute SQL query safely (FIXED INDENTATION)
+        try:
+            if any(word in sql_result.lower() for word in ["delete", "drop", "update", "insert"]):
+                st.error("Only SELECT queries are allowed.")
+            else:
+                df = pd.read_sql_query(sql_result, conn)
+                st.markdown("### Query Results")
+                st.dataframe(df)
 
-except Exception as e:
-    st.error(f"Error executing query: {e}")
+                st.download_button(
+                    "Download Results as CSV",
+                    df.to_csv(index=False),
+                    "results.csv"
+                )
+
+        except Exception as e:
+            st.error(f"Error executing query: {e}")
 
 if __name__ == "__main__":
     main()
